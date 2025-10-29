@@ -66,13 +66,27 @@ class _AnasayfaState extends State<Anasayfa> {
               print("Bilgi ikon tıklandı!");
             },
           ),
-          IconButton(
-            tooltip: "Popup Menu",
-            icon: Icon(Icons.more_vert),
-            onPressed: (){
-              print("Popup Menu ikon tıklandı!");
+          PopupMenuButton(
+            child: Icon(Icons.more_vert),
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: 1,
+                child: Text("Sil"),
+              ),
+              PopupMenuItem(
+                value: 2,
+                child: Text("Güncelle"),
+              ),
+            ],
+            onSelected: (index){
+              if(index == 1){
+                print("Popup'da Sil seçildi!");
+              }
+              if(index == 2){
+                print("Popup'da Güncelle seçildi!");
+              }
             },
-          ),
+          )
         ],
       ),
       body: Center(
