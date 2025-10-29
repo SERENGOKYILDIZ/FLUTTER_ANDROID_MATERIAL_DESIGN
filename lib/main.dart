@@ -36,7 +36,44 @@ class _AnasayfaState extends State<Anasayfa> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,
-        title: Text("Flutter Material Design"),
+        foregroundColor: Colors.white,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Başlık", style: TextStyle(color: Colors.white, fontSize: 16)),
+            Text("Alt Başlık", style: TextStyle(color: Colors.white, fontSize: 12)),
+          ],
+        ),
+        // centerTitle: true, ///-> Başlık ortalanır.
+        leading: IconButton( ///-> leading sol taraf oluyor.
+          tooltip: "Menu Icon",
+          icon: Icon(Icons.dehaze),
+          onPressed: (){
+            print("Menu ikon tıklandı!");
+          },
+        ),
+        actions: [ ///-> actions sağ taraf oluyor.
+          TextButton(
+            child: Text("ÇIKIŞ", style: TextStyle(color: Colors.white)),
+            onPressed: (){
+              print("ÇIKIŞ tıklandı!");
+            },
+          ),
+          IconButton(
+            tooltip: "Bilgi",
+            icon: Icon(Icons.info_outline),
+            onPressed: (){
+              print("Bilgi ikon tıklandı!");
+            },
+          ),
+          IconButton(
+            tooltip: "Popup Menu",
+            icon: Icon(Icons.more_vert),
+            onPressed: (){
+              print("Popup Menu ikon tıklandı!");
+            },
+          ),
+        ],
       ),
       body: Center(
         child: Column(
