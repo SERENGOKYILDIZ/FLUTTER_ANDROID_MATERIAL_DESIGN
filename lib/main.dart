@@ -48,6 +48,13 @@ class _AnasayfaState extends State<Anasayfa> {
                 child: Row(
                   children: [
                     Text(ulkeler[indeks]),
+                    Spacer(),
+                    TextButton(
+                      onPressed: (){
+                        print("${ulkeler[indeks]} ülkesi seçildi!");
+                      },
+                      child: Text("Ülke Seç", style: TextStyle(color: Colors.red, fontSize: 15, fontWeight: FontWeight.bold),),
+                    )
                   ],
                 ),
               ),
