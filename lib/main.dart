@@ -48,6 +48,7 @@ class _AnasayfaState extends State<Anasayfa> {
           return InkWell(
             onTap: (){
               print("${ulkeler[indeks]} ülkesi seçildi!");
+              Navigator.push(context, MaterialPageRoute(builder: (context) => detaySayfa(ulkeAdi: ulkeler[indeks])));
             },
             child: Card(
               child: Row(
