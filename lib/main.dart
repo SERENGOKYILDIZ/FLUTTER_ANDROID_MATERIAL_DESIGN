@@ -1,4 +1,6 @@
-import 'package:android_flutter_material_design/detay.dart';
+import 'package:android_flutter_material_design/sayfa1.dart';
+import 'package:android_flutter_material_design/sayfa2.dart';
+import 'package:android_flutter_material_design/sayfa3.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -27,53 +29,33 @@ class Anasayfa extends StatefulWidget {
 }
 
 class _AnasayfaState extends State<Anasayfa> {
-
-  Future<List<String>> verileriGetir() async {
-    var veriler = ["Türkiye", "Almanya", "Çin", "Rusya", "Amerika", "Fransa"];
-    return veriler;
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.red,
-        foregroundColor: Colors.white,
-        title: Text("Material Design")
+    return DefaultTabController(
+      length: 3, ///-> Tab sayısı
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+          title: Text("Material Design"),
+          bottom: TabBar(
+            tabs: [
+              Tab(text: "Bir",),
+              Tab(icon: Icon(Icons.looks_two, color: Colors.cyanAccent)),
+              Tab(text: "Üç", icon: Icon(Icons.looks_3, color: Colors.cyanAccent)),
+            ],
+            indicatorColor: Colors.pink, ///-> Seçim çubuğunun rengi
+            labelColor: Colors.orange, ///-> Seçilen sayfa adının rengi
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            Sayfa1(),
+            Sayfa2(),
+            Sayfa3()
+          ],
+        )
       ),
-      body: FutureBuilder<List<String>>(
-        future: verileriGetir(),
-        builder: (context, snapshot){
-          if(snapshot.hasData) ///-> Data varsa
-            {
-              var ulkeler = snapshot.data;
-
-              return ListView.builder(
-                itemCount: ulkeler!.length,
-                itemBuilder: (context, indeks){
-                  var ulke = ulkeler[indeks];
-                  return Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        height: 50,
-                        child: Row(
-                          children: [
-                            Text("${ulke}"),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              );
-            }
-          else ///-> Data yoksa boş gözükecek
-            {
-              return Center();
-            }
-        },
-      )
     );
   }
 }
