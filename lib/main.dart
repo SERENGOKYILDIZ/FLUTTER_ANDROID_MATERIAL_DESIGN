@@ -38,28 +38,22 @@ class _AnasayfaState extends State<Anasayfa> {
         foregroundColor: Colors.white,
         title: Text("Material Design")
       ),
-      body: SizedBox(
-        height: 100,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal, ///-> Sıralama yönünü değiştirdik
-          itemCount: ulkeler.length,
-          itemBuilder: (context, indeks){
-            return Card(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  width: 100,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(ulkeler[indeks]),
-                    ],
-                  )
-                ),
-              ),
-            );
-          },
+      body: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, ///-> Satırdaki item sayisi
+            childAspectRatio: 2 / 1, ///-> 2:Genişlik, 1: Yükseklikk oranında
         ),
+        itemCount: ulkeler.length,
+        itemBuilder: (context, indeks){
+          return Card(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(ulkeler[indeks], style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              ],
+            ),
+          );
+        },
       )
     );
   }
