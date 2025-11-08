@@ -26,6 +26,9 @@ class Anasayfa extends StatefulWidget {
 }
 
 class _AnasayfaState extends State<Anasayfa> {
+
+  var ulkeler = ["Türkiye", "Almanya", "Çin", "Rusya", "Amerika", "Fransa"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,44 +37,24 @@ class _AnasayfaState extends State<Anasayfa> {
         foregroundColor: Colors.white,
         title: Text("Material Design")
       ),
-      body: GridView.count(
-        crossAxisCount: 2, ///-> Bir satırda kaç eleman olacak
-        childAspectRatio: 2 / 1, ///-> Her eleman için oranlama yapar 2'e 1 yaptık.
-        children: [
-          InkWell( ///-> GestureDetector ile aynı ama animasyonlu
-            onTap: (){
-              print("Güneş");
-            },
-            child: Card(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.wb_sunny),
-                  Text("Güneş"),
-                ],
+      body: ListView.builder(
+        itemCount: ulkeler.length,
+        itemBuilder: (context, indeks){
+          return Card(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: 50,
+                child: Row(
+                  children: [
+                    Text(ulkeler[indeks]),
+                  ],
+                ),
               ),
             ),
-          ),
-          Card(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.brightness_2),
-                Text("Ay"),
-              ],
-            ),
-          ),
-          Card(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.star),
-                Text("Yıldız"),
-              ],
-            ),
-          ),
-        ],
-      ),
+          );
+        },
+      )
     );
   }
 }
