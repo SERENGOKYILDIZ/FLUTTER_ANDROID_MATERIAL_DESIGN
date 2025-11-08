@@ -1,3 +1,4 @@
+import 'package:android_flutter_material_design/detay.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -52,6 +53,7 @@ class _AnasayfaState extends State<Anasayfa> {
                     TextButton(
                       onPressed: (){
                         print("${ulkeler[indeks]} ülkesi seçildi!");
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => detaySayfa(ulkeAdi: ulkeler[indeks])));
                       },
                       child: Text("Ülke Seç", style: TextStyle(color: Colors.red, fontSize: 15, fontWeight: FontWeight.bold),),
                     )
