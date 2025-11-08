@@ -45,12 +45,17 @@ class _AnasayfaState extends State<Anasayfa> {
         ),
         itemCount: ulkeler.length,
         itemBuilder: (context, indeks){
-          return Card(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(ulkeler[indeks], style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              ],
+          return InkWell(
+            onTap: (){
+              print("${ulkeler[indeks]} ülkesi seçildi!");
+            },
+            child: Card(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(ulkeler[indeks], style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                ],
+              ),
             ),
           );
         },
