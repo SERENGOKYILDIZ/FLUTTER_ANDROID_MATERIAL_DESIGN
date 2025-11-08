@@ -28,7 +28,10 @@ class Anasayfa extends StatefulWidget {
 
 class _AnasayfaState extends State<Anasayfa> {
 
-  var ulkeler = ["Türkiye", "Almanya", "Çin", "Rusya", "Amerika", "Fransa"];
+  Future<List<String>> verileriGetir() async {
+    var veriler = ["Türkiye", "Almanya", "Çin", "Rusya", "Amerika", "Fransa"];
+    return veriler;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,44 +41,40 @@ class _AnasayfaState extends State<Anasayfa> {
         foregroundColor: Colors.white,
         title: Text("Material Design")
       ),
-      body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, ///-> Satırdaki item sayisi
-            childAspectRatio: 2 / 1, ///-> 2:Genişlik, 1: Yükseklikk oranında
-        ),
-        itemCount: ulkeler.length,
-        itemBuilder: (context, indeks){
-          return Card(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(ulkeler[indeks], style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                  Spacer(),
-                  PopupMenuButton(
-                    child: Icon(Icons.more_vert),
-                    itemBuilder: (context) => [
-                      PopupMenuItem(value: 1, child: Text("Sil")),
-                      PopupMenuItem(value: 2, child: Text("Güncelle")),
-                    ],
-                    onSelected: (menuItemValue) {
-                      if(menuItemValue == 1)
-                        {
-                          print("${ulkeler[indeks]} ülkesi silindi!");
-                        }
-                      if(menuItemValue == 2)
-                      {
-                        print("${ulkeler[indeks]} ülkesi güncellendi!");
-                      }
-                    },
-                  )
-                ],
-              ),
-            ),
-          );
+      body: FutureBuilder<List<String>>(
+        future: verileriGetir(),
+        builder: (context, snapshot){
+          if(snapshot.hasData) ///-> Data varsa
+            {
+              var ulkeler = snapshot.data;
+
+              return ListView.builder(
+                itemCount: ulkeler!.length,
+                itemBuilder: (context, indeks){
+                  var ulke = ulkeler[indeks];
+                  return Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        height: 50,
+                        child: Row(
+                          children: [
+                            Text("${ulke}"),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              );
+            }
+          else ///-> Data yoksa boş gözükecek
+            {
+              return Center();
+            }
         },
       )
     );
   }
 }
+
