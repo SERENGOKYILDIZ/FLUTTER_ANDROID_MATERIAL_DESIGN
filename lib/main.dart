@@ -29,32 +29,43 @@ class Anasayfa extends StatefulWidget {
 }
 
 class _AnasayfaState extends State<Anasayfa> {
+
+  var sayfaListesi = [Sayfa1(), Sayfa2(), Sayfa3()];
+  int secilenIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3, ///-> Tab sayısı
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          foregroundColor: Colors.white,
-          title: Text("Material Design"),
-          bottom: TabBar(
-            tabs: [
-              Tab(text: "Bir",),
-              Tab(icon: Icon(Icons.looks_two, color: Colors.cyanAccent)),
-              Tab(text: "Üç", icon: Icon(Icons.looks_3, color: Colors.cyanAccent)),
-            ],
-            indicatorColor: Colors.pink, ///-> Seçim çubuğunun rengi
-            labelColor: Colors.orange, ///-> Seçilen sayfa adının rengi
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurple,
+        foregroundColor: Colors.white,
+        title: Text("Material Design"),
+      ),
+      body: sayfaListesi[secilenIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.looks_one),
+            label: "Bir",
           ),
-        ),
-        body: TabBarView(
-          children: [
-            Sayfa1(),
-            Sayfa2(),
-            Sayfa3()
-          ],
-        )
+          BottomNavigationBarItem(
+            icon: Icon(Icons.looks_two),
+            label: "İki",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.looks_3),
+            label: "Üç",
+          ),
+        ],
+        backgroundColor: Colors.deepPurple,
+        selectedItemColor: Colors.orange,
+        unselectedItemColor: Colors.white,
+        currentIndex: secilenIndex,
+        onTap: (secilen){
+          setState(() {
+            secilenIndex = secilen;
+          });
+        },
       ),
     );
   }
