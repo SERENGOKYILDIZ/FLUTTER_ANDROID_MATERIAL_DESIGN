@@ -34,45 +34,64 @@ class _AnasayfaState extends State<Anasayfa> {
         foregroundColor: Colors.white,
         title: Text("Material Design")
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 300,
-              child: Card(
-                color: Colors.deepPurple,
-                elevation: 10, ///-> Derinlik
-                shadowColor: Colors.deepPurpleAccent, ///-> Gölgenin rengi
-                shape: RoundedRectangleBorder( ///-> Radüs vermeye yarar
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  side: BorderSide(width: 5, color: Colors.pinkAccent) ///-> Çerçeve ekler
-                ),
-                child: Center(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text("Toplam Puan", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold)),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.star, color: Colors.amber),
-                            Text("150", style: TextStyle(color: Colors.white, fontSize: 40, fontWeight: FontWeight.bold)),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+      body: ListView(
+        children: [
+          ListTile(
+            leading: Icon(Icons.sunny),
+            title: Text("Güneş"),
+            subtitle: Text("Büyük gezegen"),
+            trailing: Icon(Icons.arrow_right),
+            onTap: (){
+              print("Güneş'e tıklandı!");
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.mode_night),
+            title: Text("Ay"),
+            subtitle: Text("Uydu gezegen"),
+            trailing: Icon(Icons.arrow_right),
+            onTap: (){
+              print("Ay'a tıklandı!");
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.star),
+            title: Text("Yıldız"),
+            subtitle: Text("Güzel şeyler"),
+            trailing: Icon(Icons.arrow_right),
+            onTap: (){
+              print("Yıldız'a tıklandı!");
+            },
+          ),
+          GestureDetector(
+            onTap: (){
+              print("Kart'a tıklandı!");
+            },
+            child: Card(
+              child: SizedBox(
+                height: 50,
+                child: Row(
+                  children: [
+                    Text("Cart Tasarm"),
+                    Spacer(),
+                    Icon(Icons.more_vert)
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
-      ),
+          ),
+          GestureDetector(
+            onTap: (){
+              print("Container'a tıklandı!");
+            },
+            child: Container(
+              height: 50,
+              color: Colors.red,
+              child: Text("Container Tasarım"),
+            ),
+          )
+        ],
+      )
     );
   }
 }
