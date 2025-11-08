@@ -45,16 +45,31 @@ class _AnasayfaState extends State<Anasayfa> {
         ),
         itemCount: ulkeler.length,
         itemBuilder: (context, indeks){
-          return InkWell(
-            onTap: (){
-              print("${ulkeler[indeks]} ülkesi seçildi!");
-              Navigator.push(context, MaterialPageRoute(builder: (context) => detaySayfa(ulkeAdi: ulkeler[indeks])));
-            },
-            child: Card(
+          return Card(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(ulkeler[indeks], style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  Spacer(),
+                  PopupMenuButton(
+                    child: Icon(Icons.more_vert),
+                    itemBuilder: (context) => [
+                      PopupMenuItem(value: 1, child: Text("Sil")),
+                      PopupMenuItem(value: 2, child: Text("Güncelle")),
+                    ],
+                    onSelected: (menuItemValue) {
+                      if(menuItemValue == 1)
+                        {
+                          print("${ulkeler[indeks]} ülkesi silindi!");
+                        }
+                      if(menuItemValue == 2)
+                      {
+                        print("${ulkeler[indeks]} ülkesi güncellendi!");
+                      }
+                    },
+                  )
                 ],
               ),
             ),
