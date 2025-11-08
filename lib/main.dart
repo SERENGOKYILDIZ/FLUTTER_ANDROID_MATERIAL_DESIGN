@@ -34,64 +34,44 @@ class _AnasayfaState extends State<Anasayfa> {
         foregroundColor: Colors.white,
         title: Text("Material Design")
       ),
-      body: ListView(
+      body: GridView.count(
+        crossAxisCount: 2, ///-> Bir satırda kaç eleman olacak
+        childAspectRatio: 2 / 1, ///-> Her eleman için oranlama yapar 2'e 1 yaptık.
         children: [
-          ListTile(
-            leading: Icon(Icons.sunny),
-            title: Text("Güneş"),
-            subtitle: Text("Büyük gezegen"),
-            trailing: Icon(Icons.arrow_right),
+          InkWell( ///-> GestureDetector ile aynı ama animasyonlu
             onTap: (){
-              print("Güneş'e tıklandı!");
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.mode_night),
-            title: Text("Ay"),
-            subtitle: Text("Uydu gezegen"),
-            trailing: Icon(Icons.arrow_right),
-            onTap: (){
-              print("Ay'a tıklandı!");
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.star),
-            title: Text("Yıldız"),
-            subtitle: Text("Güzel şeyler"),
-            trailing: Icon(Icons.arrow_right),
-            onTap: (){
-              print("Yıldız'a tıklandı!");
-            },
-          ),
-          GestureDetector(
-            onTap: (){
-              print("Kart'a tıklandı!");
+              print("Güneş");
             },
             child: Card(
-              child: SizedBox(
-                height: 50,
-                child: Row(
-                  children: [
-                    Text("Cart Tasarm"),
-                    Spacer(),
-                    Icon(Icons.more_vert)
-                  ],
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.wb_sunny),
+                  Text("Güneş"),
+                ],
               ),
             ),
           ),
-          GestureDetector(
-            onTap: (){
-              print("Container'a tıklandı!");
-            },
-            child: Container(
-              height: 50,
-              color: Colors.red,
-              child: Text("Container Tasarım"),
+          Card(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.brightness_2),
+                Text("Ay"),
+              ],
             ),
-          )
+          ),
+          Card(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.star),
+                Text("Yıldız"),
+              ],
+            ),
+          ),
         ],
-      )
+      ),
     );
   }
 }
