@@ -50,12 +50,22 @@ class _AnasayfaState extends State<Anasayfa> {
                   children: [
                     Text(ulkeler[indeks]),
                     Spacer(),
-                    TextButton(
-                      onPressed: (){
-                        print("${ulkeler[indeks]} ülkesi seçildi!");
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => detaySayfa(ulkeAdi: ulkeler[indeks])));
+                    PopupMenuButton(
+                      child: Icon(Icons.more_vert),
+                      itemBuilder: (context) => [
+                        PopupMenuItem(value: 1, child: Text("Sil")),
+                        PopupMenuItem(value: 2, child: Text("Güncelle")),
+                      ],
+                      onSelected: (menuItemValue){
+                        if(menuItemValue == 1)
+                        {
+                          print("${ulkeler[indeks]} ülkesi silindi!");
+                        }
+                        if(menuItemValue == 2)
+                        {
+                          print("${ulkeler[indeks]} ülkesi güncellendi!");
+                        }
                       },
-                      child: Text("Ülke Seç", style: TextStyle(color: Colors.red, fontSize: 15, fontWeight: FontWeight.bold),),
                     )
                   ],
                 ),
