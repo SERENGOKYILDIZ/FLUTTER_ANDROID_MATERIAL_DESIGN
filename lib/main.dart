@@ -30,8 +30,8 @@ class Anasayfa extends StatefulWidget {
 
 class _AnasayfaState extends State<Anasayfa> {
 
-  var sayfaListesi = [Sayfa1(), Sayfa2(), Sayfa3()];
-  int secilenIndex = 0;
+  var Sayfalar = [Sayfa1(), Sayfa2(), Sayfa3()];
+  int sayfaIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -41,31 +41,47 @@ class _AnasayfaState extends State<Anasayfa> {
         foregroundColor: Colors.white,
         title: Text("Material Design"),
       ),
-      body: sayfaListesi[secilenIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.looks_one),
-            label: "Bir",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.looks_two),
-            label: "İki",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.looks_3),
-            label: "Üç",
-          ),
-        ],
-        backgroundColor: Colors.deepPurple,
-        selectedItemColor: Colors.orange,
-        unselectedItemColor: Colors.white,
-        currentIndex: secilenIndex,
-        onTap: (secilen){
-          setState(() {
-            secilenIndex = secilen;
-          });
-        },
+      body: Sayfalar[sayfaIndex],
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero, ///-> Başlık tam otursun diye yaptk
+          children: [
+            DrawerHeader(
+                child: Text("BAŞLIK", style: TextStyle(color: Colors.white, fontSize: 30)),
+                decoration: BoxDecoration(
+                  color: Colors.deepPurple
+                ),
+            ),
+            ListTile(
+              title: Text("Sayfa 1"),
+              onTap: (){
+                setState(() {
+                  sayfaIndex = 0;
+                });
+                Navigator.pop(context); ///-> Sayfa geçisi yapıldıktan sonra kapasın
+              },
+            ),
+            ListTile(
+              title: Text("Sayfa 2", style: TextStyle(color: Colors.pink)),
+              onTap: (){
+                setState(() {
+                  sayfaIndex = 1;
+                });
+                Navigator.pop(context); ///-> Sayfa geçisi yapıldıktan sonra kapasın
+              },
+            ),
+            ListTile(
+              title: Text("Sayfa 3"),
+              leading: Icon(Icons.looks_3, color: Colors.orange),
+              onTap: (){
+                setState(() {
+                  sayfaIndex = 2;
+                });
+                Navigator.pop(context); ///-> Sayfa geçisi yapıldıktan sonra kapasın
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
